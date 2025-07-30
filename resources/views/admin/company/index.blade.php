@@ -5,8 +5,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
-                            <h4>Basic DataTables</h4>
-                            <a href="{{ route('admin.company.create') }}" class="btn btn-primary">Create Company</a>
+                            <h4>Company Information</h4>
+                            @if (!$company)
+                                <a href="{{ route('admin.company.create') }}" class="btn btn-primary">Create Company</a>
+                            @endif
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -16,35 +18,31 @@
                                             <th class="text-center">
                                                 #
                                             </th>
-                                            <th>Task Name</th>
-                                            <th>Progress</th>
-                                            <th>Members</th>
-                                            <th>Due Date</th>
-                                            <th>Status</th>
+                                            <th>Company Name</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>Logo</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>
-                                                1
-                                            </td>
-                                            <td>Create a mobile app</td>
-                                            <td class="align-middle">
-                                                <div class="progress progress-xs">
-                                                    <div class="progress-bar bg-success width-per-40">
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <img alt="image" src="assets/img/users/user-5.png" width="35">
-                                            </td>
-                                            <td>2018-01-20</td>
-                                            <td>
-                                                <div class="badge badge-success badge-shadow">Completed</div>
-                                            </td>
-                                            <td><a href="#" class="btn btn-primary">Detail</a></td>
-                                        </tr>
+                                        @if ($company)
+                                            <tr>
+                                                <td>
+                                                    1
+                                                </td>
+                                                <td>{{ $company->name }}</td>
+                                                <td>{{ $company->email }}</td>
+                                                <td>{{ $company->phone }}</td>
+                                                <td class="d-flex justify-content-center">
+                                                    <img height="40" src="{{ asset($company->logo) }}"
+                                                        alt="{{ $company->name }}">
+                                                </td>
+
+                                                <td><a href="{{ route('admin.company.edit', $company->id) }}"
+                                                        class="btn btn-primary">Edit</a></td>
+                                            </tr>
+                                        @endif
 
                                     </tbody>
                                 </table>

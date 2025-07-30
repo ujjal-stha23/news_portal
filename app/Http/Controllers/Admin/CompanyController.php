@@ -13,7 +13,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        return view('admin.company.index');
+        $company = Company::first();
+        return view('admin.company.index', compact('company'));
     }
 
     /**
@@ -21,7 +22,11 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view('admin.company.create');
+        $company = Company::first();
+        if (!$company) {
+            return view('admin.company.create');
+        }
+        return redirect()->route('admin.company.index');
     }
 
     /**
@@ -36,15 +41,17 @@ class CompanyController extends Controller
         $company->facebook_url = $request->facebook;
         $company->youtube_url = $request->youtube;
         $company->instagram_url = $request->instagram;
-        $company->meta_keywords = $request->keywords;
+        $company->meta_keyword = $request->keywords;
         $company->meta_description = $request->description;
         $file = $request->logo;
         if ($file) {
             $newName = uniqid() . "." . $file->getClientOriginalExtension();
-            $file->move('images/') . $newName;
+            $file->move('images/', $newName);
             $company->logo = "images/$newName";
         }
         $company->save();
+
+        return redirect()->route('admin.company.index');
     }
 
     /**
@@ -60,7 +67,8 @@ class CompanyController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $company = Company::find($id);
+        return view('admin.company.edit', compact('company'));
     }
 
     /**
@@ -68,7 +76,27 @@ class CompanyController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $company = Company::find($id);
+        $company->name = $request->name;
+        $company->email = $request->email;
+        $company->phone = $request->phone;
+        $company->facebook_url = $request->facebook;
+        $company->youtube_url = $request->youtube;
+        $company->instagram_url = $request->instagram;
+        $company->meta_keyword = $request->keywords;
+        $company->meta_description = $request->description;
+        $file = $request->logo;
+        if ($file) {
+            if ($company->logo) {
+                unlink($company->logo);
+            }
+            $newName = uniqid() . "." . $file->getClientOriginalExtension();
+            $file->move('images/', $newName);
+            $company->logo = "images/$newName";
+        }
+        $company->save();
+        toast("Company Updated Successfully", 'success');
+        return redirect()->route('admin.company.index');
     }
 
     /**
