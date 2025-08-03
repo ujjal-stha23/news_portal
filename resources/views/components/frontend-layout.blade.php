@@ -8,15 +8,11 @@
     <title>Document</title>
     <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/style.css') }}">
 </head>
 
 <body>
     <x-frontend-header />
-    <h1 class="text-red-600 text-[50px]">Hello</h1>
-    <i class="fa-solid fa-house"></i>
-
-
     {{ $slot }}
 </body>
 
