@@ -24,7 +24,8 @@ class PageController extends Controller
 
     public function home()
     {
-        $latest_articles = Article::orderBy('id', 'desc')->limit(5)->get;
-        return view('frontend.home', compact('latest_article'));
+        $latest_articles = Article::orderBy('id', 'desc')->limit(5)->get();
+        $trending_articles = Article::orderBy('views', 'desc')->limit(5)->get();
+        return view('frontend.home', compact('latest_articles', 'trending_articles'));
     }
 }

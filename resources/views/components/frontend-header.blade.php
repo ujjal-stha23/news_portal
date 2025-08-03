@@ -1,4 +1,4 @@
-<header>
+<header class="sticky top-0 z-10 bg-white">
     <div class="container py-2 flex justify-between items-center">
         <div>
             <img class=" h-[50px] md:h-[100px]" src="{{ asset($company->logo) }}" alt="{{ $company->name }}">
