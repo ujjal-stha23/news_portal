@@ -39,7 +39,7 @@
                                         @endforeach
 
 
-                                    </tbody>e
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

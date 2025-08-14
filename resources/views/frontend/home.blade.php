@@ -23,7 +23,7 @@
 
             <div class="md:col-span-1 space-y-6">
                 <h2
-                    class="text-2xl font-bold bg-[var(--light-primary)] text-[var(--primary)] p-2 border-1-4 border-[var(--primary)]">
+                    class="text-2xl font-bold bg-[var(--light-primary)] text-[var(--primary)] p-2 border-l-4 border-[var(--primary)]">
                     ट्रेन्डिङ
                 </h2>
 
@@ -35,6 +35,23 @@
 
             </div>
         </div>
+    </section>
+    <section>
+        <div class="container space-y-10">
+            @foreach ($categories as $category)
+                <h2
+                    class="text-2xl font-bold bg-[var(--light-primary)] text-[var(--primary)] p-2 border-1-4 border-[var(--primary)]">
+                    {{ $category->title }}
+
+                </h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 my-5">
+                    @foreach ($category->articles as $article)
+                        <x-article-card :article="$article" />
+                    @endforeach
+                </div>
+            @endforeach
+        </div>
+
     </section>
 
 

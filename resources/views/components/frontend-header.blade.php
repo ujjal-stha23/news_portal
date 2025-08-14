@@ -1,7 +1,11 @@
 <header class="sticky top-0 z-10 bg-white">
     <div class="container py-2 flex justify-between items-center">
         <div>
-            <img class=" h-[50px] md:h-[100px]" src="{{ asset($company->logo) }}" alt="{{ $company->name }}">
+            <a href="{{ route('home') }}">
+                <img class=" h-[50px] md:h-[100px]" src="{{ asset($company->logo) }}" alt="{{ $company->name }}">
+
+
+            </a>
         </div>
         <div>
             <p class="text-sm  md:text-lg">आइतबार, १८ साउन २०८२</p>
@@ -15,7 +19,7 @@
             <div class="flex gap-8">
                 <a href="गृहपृष्ठ"></a>
                 @foreach ($categories as $category)
-                    <a href="">{{ $category->title }}</a>
+                    <a href="{{ route('category', $category->slug) }}">{{ $category->title }}</a>
                 @endforeach
             </div>
             <div>
@@ -64,7 +68,7 @@
         <div class="flex flex-col gap-8 mt-5">
             <a href="गृहपृष्ठ"></a>
             @foreach ($categories as $category)
-                <a href="">{{ $category->title }}</a>
+                <a href=" {{ route('category', $category->slug) }} ">{{ $category->title }}</a>
             @endforeach
         </div>
     </div>

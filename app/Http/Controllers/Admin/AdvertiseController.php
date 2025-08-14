@@ -89,7 +89,7 @@ class AdvertiseController extends Controller
         };
         $advertise->save();
         toast("Category Updated Successfully", "success");
-        return redirect()->back();
+        return redirect()->route('admin.advertise.index');
     }
 
     /**

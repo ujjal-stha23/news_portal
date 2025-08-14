@@ -5,23 +5,23 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
-                            <h4>Category Edit</h4>
-                            <a href="{{ route('admin.category.index') }}" class="btn btn-primary">Go Back</a>
+                            <h4>Advertise Edit</h4>
+                            <a href="{{ route('admin.advertise.index') }}" class="btn btn-primary">Go Back</a>
                         </div>
                         <div class="card-body">
 
-                            <form action="{{ route('admin.category.update', $category->id) }}" method="post"
+                            <form action="{{ route('admin.advertise.update', $advertise->id) }}" method="post"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('patch')
 
                                 <div class="row ">
                                     <div class="col-6 mb-4">
-                                        <label for="title">Enter Category Title <span
+                                        <label for="company_name">Enter Company Name <span
                                                 class="text-danger">*</span></label>
-                                        <input type="text" id="title" name="title" class="form-control"
-                                            value="{{ old('title') ?? $category->title }}">
-                                        @error('title')
+                                        <input type="text" id="company_name" name="company_name" class="form-control"
+                                            value="{{ old('company_name') ?? $advertise->company_name }}">
+                                        @error('company_name')
                                             <div class="text-danger">
                                                 {{ $message }}
                                             </div>
@@ -29,29 +29,66 @@
                                     </div>
 
                                     <div class="col-6 mb-4">
-                                        <label for="slug">Enter Category Slug <span
+                                        <label for="contact">Enter Company Contact <span
                                                 class="text-danger">*</span></label>
-                                        <input type="text" id="slug" name="slug" class="form-control"
-                                            value="{{ old('slug') ?? $category->slug }}">
-                                        @error('slug')
+                                        <input type="text" id="contact" name="contact" class="form-control"
+                                            value="{{ old('contact') ?? $advertise->contact }}">
+                                        @error('contact')
+                                            <div class="text-danger">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-6 mb-4">
+                                        <label for="redirect_url">Enter Redirect URL <span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" id="redirect_url" name="redirect_url" class="form-control"
+                                            value="{{ old('redirect_url') ?? $advertise->redirect_url }}">
+                                        @error('redirect_url')
+                                            <div class="text-danger">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-6 mb-4">
+                                        <label for="schedule_date">Enter Schedule Date <span
+                                                class="text-danger">*</span></label>
+                                        <input type="date" id="schedule_date" name="schedule_date"
+                                            class="form-control"
+                                            value="{{ old('schedule_date') ?? $advertise->schedule_date }}">
+                                        @error('schedule_date')
+                                            <div class="text-danger">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-6 mb-4">
+                                        <label for="expiry_date">Enter Expiry Date <span
+                                                class="text-danger">*</span></label>
+                                        <input type="date" id="expiry_date" name="expiry_date" class="form-control"
+                                            value="{{ old('expiry_date') ?? $advertise->expiry_date }}">
+                                        @error('expiry_date')
+                                            <div class="text-danger">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-6 mb-4">
+                                        <label for="image">Enter Advertise Image <span
+                                                class="text-danger">*</span></label>
+                                        <input type="file" id="image" name="image" class="form-control">
+                                        <img height="60" src="{{ asset($advertise->image) }}"
+                                            alt="{{ $advertise->company_name }}">
+                                        @error('image')
                                             <div class="text-danger">
                                                 {{ $message }}
                                             </div>
                                         @enderror
                                     </div>
 
-                                    <div class="col-12 mb-4">
-                                        <label for="keywords">Enter Meta Keywords (for SEO) </label>
-                                        <textarea id="keywords" name="keywords" class="form-control">{{ old('keywords') ?? $category->meta_keywords }} </textarea>
-                                    </div>
-
-                                    <div class="col-12 mb-4">
-                                        <label for="description">Enter Meta Description (for SEO) </label>
-                                        <textarea name="description" id="description" class="form-control">{{ old('description') ?? $category->meta_description }} </textarea>
-                                    </div>
 
                                     <div class="col-12">
-                                        <button type="submit" class="btn btn-success">Update Record</button>
+                                        <button type="submit" class="btn btn-success">Save Record</button>
                                     </div>
                                 </div>
 

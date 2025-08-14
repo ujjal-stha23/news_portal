@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Advertise;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Company;
@@ -27,5 +28,13 @@ class PageController extends Controller
         $latest_articles = Article::orderBy('id', 'desc')->limit(5)->get();
         $trending_articles = Article::orderBy('views', 'desc')->limit(5)->get();
         return view('frontend.home', compact('latest_articles', 'trending_articles'));
+    }
+
+    public function category($slug)
+    {
+        $category = Category::where('slug', $slug)->first();
+        $articles = $category->articles;
+        $advertises = Advertise::where('expiry_date', ">", now())->get();
+        return view('frontend.category', compact('articles', 'category', 'advertises'));
     }
 }

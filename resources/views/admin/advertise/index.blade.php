@@ -20,7 +20,7 @@
                                             <th>Contact</th>
                                             <th>Image</th>
                                             <th>Schedule Date</th>
-                                            <th>Schedu Date</th>
+                                            <th>Schedule Date</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -42,7 +42,7 @@
                                         @endforeach
 
 
-                                    </tbody>e
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
